@@ -22,6 +22,7 @@ let windowManager;
 let initialized = false;
 
 // get time in seconds since beginning of the day (so that all windows use the same time)
+// 获取一天开始的时间（秒），以便所有窗口使用相同的时间。
 function getTime ()
 {
 	return (new Date().getTime() - today) / 1000.0;
@@ -35,6 +36,7 @@ if (new URLSearchParams(window.location.search).get("clear"))
 else
 {	
 	// this code is essential to circumvent that some browsers preload the content of some pages before you actually hit the url
+	// 这段代码对于避免某些浏览器在实际访问URL之前预加载页面内容至关重要。
 	document.addEventListener("visibilitychange", () => 
 	{
 		if (document.visibilityState != 'hidden' && !initialized)
@@ -55,6 +57,7 @@ else
 		initialized = true;
 
 		// add a short timeout because window.offsetX reports wrong values before a short period 
+		// 添加一个较短延迟，因为window.offsetX在短时间段内报告错误值。
 		setTimeout(() => {
 			setupScene();
 			setupWindowManager();
